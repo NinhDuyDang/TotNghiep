@@ -1,0 +1,19 @@
+server:
+  port: 8081
+
+spring:
+  mail:
+    host: localhost
+    port: 1025
+    properties:
+      mail:
+        smtp:
+          ssl:
+            trust: "*"
+          auth: false
+          starttls:
+            enable: false
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
+
