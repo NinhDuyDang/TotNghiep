@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/home.css">
+</head>
+
+<body style="background-color: rgb(245, 245, 245);">
+<!-- Navigation-->
+<div style="background-color: #007fe7;">
+  <div class="navbar navbar-expand-md navbar-light d-flex justify-content-around">
+    <ul class="navbar-nav mr-auto font-weight-bold">
+      <li class="nav-item">
+        <h3><a class="nav-link" href="/" style="color: rgb(255, 255, 255);">Home</a></h3>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto font-weight-bold">
+      <li class="nav-item">
+        <a class="nav-link disabled" style="color: rgb(255, 255, 255)">
+          <i class="fa-solid fa-user me-1" style="font-size: 1.2em;"></i>
+          <strong><span sec:authentication="name">Username</span></strong>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a style="cursor: pointer; color: rgb(255, 255, 255);" class=" nav-link" data-bs-toggle="modal"
+           data-bs-target="#exampleModal"> Logout </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- Modal logout-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalLabel">Are you sure you want to sign out?</h6>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <form th:action="@{/logout}" method="post">
+          <input type="submit" class="btn btn-primary" value="Logout"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Section-->
+
+<div class="container mt-4 d-flex justify-content-between" style="color: rgb(0,8,255);">
+  <div class="d-flex align-items-center" style="margin-left: 38px">
+    <h3>
+      <i>Recommend for you</i>
+    </h3>
+  </div>
+  <div class="ms-2 form-outline" style="margin-right: 84px">
+  </div>
+  <div class=" form-outline" style="margin-right: 84px">
+  </div>
+  <div class=" form-outline" style="margin-right: 84px">
+  </div>
+  <div class="ms-2 form-outline" style="margin-right: 84px">
+    <b class="d-flex align-items-center">Search by author:</b>
+    <input class="form-control" type="text" id="inputPublisher" onkeyup="searchPublisher()"
+           placeholder="Search ..." title="Type in a name"/>
+  </div>
+
+  <div class="ms-2 form-outline" style="margin-right: 84px">
+    <b class="d-flex align-items-center">Search by book title:</b>
+    <input class="form-control" type="text" id="inputBookName" onkeyup="myFunction()"
+           placeholder="Search ..." title="Type in a name"/>
+  </div>
+
+  <!--    <div class="ms-2 form-outline" style="margin-right: 84px">-->
+  <!--        <b class="d-flex align-items-center">Find book:</b>-->
+  <!--        <select id="inputPublisher" onchange="searchPublisher()">-->
+  <!--            <option value="s">s</option>-->
+  <!--            <option value="k">k</option>-->
+  <!--            <option value="" selected></option>-->
+  <!--        </select>-->
+  <!--    </div>-->
+
+
+</div>
+
+<!--<section class="py-3 container d-flex justify-content-around">-->
+<section class="py-1">
+  <div class="container px-4 px-lg-5 mt-4">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
+         id="searchBook">
+      <!--    <div class="row row-cols-5" id="searchBookName">-->
+      <div class="col mb-4 abc" th:each="book : ${listBook}">
+        <div class="card" style="width: 180px; height: 430px;">
+          <img th:src="${book.imageUrl}" alt="..." style="height: 250px; width: 178px; padding: 0mm; display:block;
+                    margin:auto;">
+          <div class="card-body">
+            <h5 class="card-title" style="height: 58px;" th:text="kkk" hidden></h5>
+            <h6 class="card-title" style="height: 58px;" th:text="${book.title}"></h6>
+            <p class="card-text" style="height: 47px;" th:text="${book.authors}"></p>
+            <div class="d-flex justify-content-between">
+              <a th:href="'https://www.goodreads.com/book/show/'+${book.bestBookId}" target="_blank">
+                <i> Detail...</i>
+              </a>
+              <!--                            <i class="fa-solid fa-heart"-->
+              <!--                               style="font-size: 1.2em;"-->
+              <!--                               data-toggle="tooltip" data-placement="right" title="Love"></i>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- footer -->
+<div class="footer d-flex justify-content-around" style="padding-bottom: 30px;padding-top: 30px;background-color: #ffffff;">
+  <div class=footer-left>
+    <h5 class="footer-left-title text-center">Công ty TNHH phát triển phần mềm ABC Việt Nam</h5>
+    <ul>
+      <li style="margin-top: 18px" class="footer-left-item">Địa chỉ: Ngõ 575, Kim Mã, Ngọc Khánh, Ba Đình, Hà Nội, Việt Nam</li>
+      <li style="margin-top: 10px" class="footer-left-item">Số điện thoại: 0393830629</li>
+      <li style="margin-top: 10px" class="footer-left-item">Email: mungnh820@gmail.com</li>
+    </ul>
+  </div>
+  <div class="footer-right">
+    <h5 class="footer-right-title text-center">Google map</h5>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5266.663376957914!2d105.80922238719126!3d21.028948996833154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab6bcff0b1a3%3A0x8986a18c4e6dbfb5!2zTmcuIDU3NSBQLiBLaW0gTcOjLCBOZ-G7jWMgS2jDoW5oLCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1671336030530!5m2!1svi!2s"
+            width="280" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</div>
+<!-- tìm kiếm sách -->
+<script>
+  function myFunction() {
+    // Declare variables
+    var inputBookName, filterBookName, ul, li, a, i, bookName, inputPublisher, filterPublisher, publisher;
+
+    inputBookName = document.getElementById('inputBookName');
+    filterBookName = inputBookName.value.toUpperCase();
+
+    inputPublisher = document.getElementById('inputPublisher');
+    filterPublisher = inputPublisher.value.toUpperCase();
+
+    ul = document.getElementById("searchBook");
+    li = ul.getElementsByClassName("abc");
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+      a = li[i].getElementsByTagName("p")[0];
+      publisher = a.textContent || a.innerText;
+      if (publisher.toUpperCase().indexOf(filterPublisher) > -1) {
+        a = li[i].getElementsByTagName("h6")[0];
+        bookName = a.textContent || a.innerText;
+        if (bookName.toUpperCase().indexOf(filterBookName) > -1) {
+          li[i].style.display = "";
+        } else {
+          li[i].style.display = "none";
+        }
+      } else {
+        li[i].style.display = "none";
+      }
+    }
+  }
+  function searchPublisher() {
+    // Declare variables
+    var inputBookName, filterBookName, ul, li, a, i, bookName, inputPublisher, filterPublisher, publisher;
+
+    inputBookName = document.getElementById('inputBookName');
+    filterBookName = inputBookName.value.toUpperCase();
+
+    inputPublisher = document.getElementById('inputPublisher');
+    filterPublisher = inputPublisher.value.toUpperCase();
+
+    ul = document.getElementById("searchBook");
+    li = ul.getElementsByClassName("abc");
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+      a = li[i].getElementsByTagName("h6")[0];
+      bookName = a.textContent || a.innerText;
+      if (bookName.toUpperCase().indexOf(filterBookName) > -1) {
+        a = li[i].getElementsByTagName("p")[0];
+        publisher = a.textContent || a.innerText;
+        if (publisher.toUpperCase().indexOf(filterPublisher) > -1) {
+          li[i].style.display = "";
+        } else {
+          li[i].style.display = "none";
+        }
+      } else {
+        li[i].style.display = "none";
+      }
+    }
+  }
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -127,7 +127,7 @@ public class RegisterController {
             return "redirect:/reset_password";
         }
 
-        String link = "http://localhost:8081/change_password?email=" + email;
+        String link = "http://localhost:8089/change_password?email=" + email;
         String content = "Nhấp vào <a href=\"" + link + "\">liên kết này</a> để thay đổi mật khẩu";
         emailSenderService.send(
                 email,

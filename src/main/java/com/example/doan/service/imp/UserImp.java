@@ -45,7 +45,7 @@ public class UserImp implements UserService {
         String link = "http://localhost:8081/register/confirm?token=" + token;
         emailSenderService.send(
                 user.getEmail(),
-                buildEmail(user.getFirstName(), link));
+                buildEmail(user.getUsername(), link));
     }
 
     @Override
