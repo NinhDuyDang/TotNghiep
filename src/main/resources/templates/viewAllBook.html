@@ -107,7 +107,7 @@
             <h6 class="card-title" style="height: 58px;" th:text="${book.title}"></h6>
             <p class="card-text" style="height: 47px;" th:text="${book.authors}"></p>
             <div class="d-flex justify-content-between">
-              <a th:href="'https://www.goodreads.com/book/show/'+${book.bestBookId}" target="_blank">
+              <a th:href="@{'/viewBookDetail?bookId='+${book.bookId}}">
                 <i> Detail...</i>
               </a>
               <!--                            <i class="fa-solid fa-heart"-->
