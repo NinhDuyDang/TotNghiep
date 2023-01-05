@@ -42,7 +42,7 @@ public class UserImp implements UserService {
                 .user(user).build();
         confirmTokenRepository.save(confirmationToken);
 
-        String link = "http://localhost:8081/register/confirm?token=" + token;
+        String link = "http://localhost:8089/register/confirm?token=" + token;
         emailSenderService.send(
                 user.getEmail(),
                 buildEmail(user.getUsername(), link));

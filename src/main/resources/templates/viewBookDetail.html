@@ -93,42 +93,51 @@
 </div>
 <section class = "py-1 container">
   <div class="card-group">
-    <div class="card p-1">
-      <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1586722975i/2767052.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-text">The Hunger Games</p>
-      </div>
-    </div>
-    <div class="card p-1">
-      <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1592234598i/49494289.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-text">The Hunger Games</p>
-      </div>
-    </div>
-    <div class="card p-1">
-      <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546071216i/5907.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-text">The Hobbit</p>
-      </div>
-    </div>
-    <div class="card p-1">
-      <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1170803558l/72193.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-text">Harry Potter and the Philosopher's Stone</p>
-      </div>
-    </div>
-    <div class="card p-1">
-      <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1361039443i/41865.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-text">Twilight</p>
-      </div>
-    </div>
-    <div class="card p-1">
-      <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1660273739i/11870085.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-text">The Fault in Our Stars</p>
-      </div>
-    </div>
+
+        <th:block th:each="b : ${bookAnathorRecommendList}">
+
+              <div class="card p-1">
+                <img th:src="${b.imageUrl}" class="card-img-top" alt="..." style="height: 280px">
+                <div class="card-body">
+                    <a th:href="@{'/viewBookDetail?bookId='+${b.bookId}}">
+                        <p class="card-text" th:text="${b.title}">The Hunger Games</p>
+                    </a>
+                </div>
+              </div>
+
+        </th:block>
+
+
+<!--    <div class="card p-1">-->
+<!--      <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1592234598i/49494289.jpg" class="card-img-top" alt="...">-->
+<!--      <div class="card-body">-->
+<!--        <p class="card-text">The Hunger Games</p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="card p-1">-->
+<!--      <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546071216i/5907.jpg" class="card-img-top" alt="...">-->
+<!--      <div class="card-body">-->
+<!--        <p class="card-text">The Hobbit</p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="card p-1">-->
+<!--      <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1170803558l/72193.jpg" class="card-img-top" alt="...">-->
+<!--      <div class="card-body">-->
+<!--        <p class="card-text">Harry Potter and the Philosopher's Stone</p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="card p-1">-->
+<!--      <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1361039443i/41865.jpg" class="card-img-top" alt="...">-->
+<!--      <div class="card-body">-->
+<!--        <p class="card-text">Twilight</p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="card p-1">-->
+<!--      <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1660273739i/11870085.jpg" class="card-img-top" alt="...">-->
+<!--      <div class="card-body">-->
+<!--        <p class="card-text">The Fault in Our Stars</p>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </section>
 <!-- footer -->
