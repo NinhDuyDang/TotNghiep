@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo Sách Mới</title>
+</head>
+<body>
+<h1>Tạo Cuốn Sách Mới</h1>
+<form action="/createBook" method="post">
+    <label for="bookId">ID Cuốn Sách:</label>
+    <input type="number" id="bookId" name="bookId" required><br><br>
+
+    <label for="author">Tác Giả:</label>
+    <input type="text" id="author" name="author" required><br><br>
+
+    <label for="bestBookId">ID Cuốn Sách Tốt Nhất:</label>
+    <input type="number" id="bestBookId" name="bestBookId"><br><br>
+
+    <label for="workId">ID Tác Phẩm:</label>
+    <input type="number" id="workId" name="workId" required><br><br>
+
+    <label for="imageUrl">URL Hình Ảnh:</label>
+    <input type="text" id="imageUrl" name="imageUrl"><br><br>
+
+    <label for="title">Tiêu Đề:</label>
+    <input type="text" id="title" name="title" required><br><br>
+
+    <label for="originalPublicationYear">Năm Xuất Bản Gốc:</label>
+    <input type="text" id="originalPublicationYear" name="originalPublicationYear" required><br><br>
+
+    <label for="average_rating">Đánh Giá Trung Bình:</label>
+    <input type="number" id="average_rating" name="average_rating" step="0.1" required><br><br>
+
+    <input type="submit" value="Tạo Sách">
+</form>
+</body>
+</html>

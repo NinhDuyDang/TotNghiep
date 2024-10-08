@@ -4,7 +4,6 @@ import com.example.doan.config.MyUserDetails;
 import com.example.doan.dto.UserDto;
 import com.example.doan.entity.Book;
 import com.example.doan.entity.InterativeBook;
-import com.example.doan.entity.PublisherBook;
 import com.example.doan.repository.BookRepository;
 import com.example.doan.repository.InterativeBookRepository;
 import com.example.doan.repository.PublisherBookRepository;
@@ -80,7 +79,7 @@ public class BookController {
         modelMap.addAttribute("ratingAvg", book.getAverageRating());
         modelMap.addAttribute("publisher", publisher);
         modelMap.addAttribute("author", book.getAuthors());
-        System.out.println("nguyen huu mung");
+        System.out.println("ninh duy dang ");
         System.out.println(book.getOriginalPublicationYear().substring(0, book.getOriginalPublicationYear().length()-2));
 
         List<InterativeBook> interativeBooks = interativeBookRepository.findDistinctByBookId(bookId);
@@ -98,4 +97,44 @@ public class BookController {
         modelMap.addAttribute("bookAnathorRecommendList", bookAnathorRecommendList);
         return "viewBookDetail";
     }
+
+    @PostMapping("createBook")
+    public String createBook(ModelMap modelMap,
+                             @RequestParam("bookId") Integer bookId,
+                             @RequestParam("author") String author,
+                             @RequestParam("bestBookId") Integer bestBookId,
+                             @RequestParam("workId") Integer workId ,
+                             @RequestParam("imageUrl") String imageUrl,
+                             @RequestParam("title") String title ,
+                             @RequestParam("originalPublicationYear") String originalPublicationYear,
+                             @RequestParam("average_rating") Float average_rating){
+
+        // Lấy thông tin chi tiết người dùng hiện tại từ SecurityContextHolder
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Integer userId = userDetails.getUser().getUserId();
+        modelMap.addAttribute("userId", userId);
+        try {
+            // Tạo đối tượng Book mới
+            Book book = new Book();
+            book.setBookId(bookId);
+            book.setAuthors(author);
+            book.setBestBookId(bestBookId);
+            book.setWorkId(workId);
+            book.setImageUrl(imageUrl);
+            book.setTitle(title);
+            book.setOriginalPublicationYear(originalPublicationYear);
+            book.setAverageRating(average_rating);
+         bookService.createBook(book);
+
+            modelMap.addAttribute("message", "Sách đã được tạo thành công!");
+        } catch (Exception e) {
+
+            modelMap.addAttribute("message", "Có lỗi xảy ra khi tạo sách: " + e.getMessage());
+        }
+
+        return "createBookView";
+    }
+
+
 }
+
