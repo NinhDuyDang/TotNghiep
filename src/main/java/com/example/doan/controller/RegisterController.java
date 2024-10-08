@@ -32,14 +32,7 @@ public class RegisterController {
         System.out.println("trang login");
         return "login";
     }
-
-    @GetMapping("admin")
-    public String getAdminLoginForm() {
-        System.out.println("trang admin login");
-        return "admin_login";
-    }
-
-    @PostMapping("loginAdmin")
+    @PostMapping("login")
     public String loginAdmin(@RequestParam("email") String email, @RequestParam("password") String password) {
 
         String validEmail = "ninhdang"; // Email hợp lệ
