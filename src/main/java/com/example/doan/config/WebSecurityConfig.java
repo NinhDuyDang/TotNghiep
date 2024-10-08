@@ -42,12 +42,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/register/**", "/reset_password", "/change_password", "/confirmed",
                         "/enter_password",
                         "/**/*.js", "/**/*.css")
-                .permitAll()
+                .permitAll() // Các trang này cho phép truy cập mà không cần xác thực
+                .antMatchers("/admin/**") // Chỉ cho phép truy cập vào các trang admin cho người dùng có quyền ADMIN
+                .hasRole("ADMIN") // Kiểm tra người dùng có vai trò ADMIN
                 .anyRequest()
-                .authenticated()
+                .authenticated() // Bất kỳ yêu cầu nào khác đều cần xác thực
                 .and()
-                .formLogin().loginPage("/login").permitAll()
+                .formLogin()
+                .loginPage("/login") // Đặt trang đăng nhập tùy chỉnh
+                .permitAll() // Cho phép tất cả mọi người truy cập trang đăng nhập
                 .and()
-                .logout().permitAll();
+                .logout()
+                .permitAll(); // Cho phép tất cả mọi người thực hiện logout
     }
+
 }

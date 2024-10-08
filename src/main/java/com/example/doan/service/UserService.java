@@ -11,4 +11,5 @@ public interface UserService {
     String confirm(String token);
     Optional<User> findUserByEmail(String email);
     Integer updatePassword(String password, String email);
+
 }

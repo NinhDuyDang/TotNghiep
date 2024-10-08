@@ -33,6 +33,25 @@ public class RegisterController {
         return "login";
     }
 
+    @GetMapping("admin")
+    public String getAdminLoginForm() {
+        System.out.println("trang admin login");
+        return "admin_login";
+    }
+
+    @PostMapping("loginAdmin")
+    public String loginAdmin(@RequestParam("email") String email, @RequestParam("password") String password) {
+
+        String validEmail = "ninhdang"; // Email hợp lệ
+        String validPassword = "1234"; // Mật khẩu hợp lệ
+
+        if (email.equals(validEmail) && password.equals(validPassword)) {
+            return "admin_login"; // Đăng nhập thành công
+        } else {
+            return "login"; // Đăng nhập không thành công
+        }
+    }
+
     /**
      * Tại trang đăng kí
      *

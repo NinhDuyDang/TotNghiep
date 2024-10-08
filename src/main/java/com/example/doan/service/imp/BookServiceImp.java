@@ -33,7 +33,6 @@ public class BookServiceImp implements BookService {
     @Override
     public void createBook(Book book) {
         bookRepository.save(book);
-
     }
 
     @Override

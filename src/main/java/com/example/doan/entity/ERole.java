@@ -1,5 +1,5 @@
 package com.example.doan.entity;
 
-public enum Enum {
+public enum ERole {
    USER, ADMIN
 }
